@@ -6,7 +6,7 @@
 
 ### Links and Resources
 
-- [submission PR]()
+- [submission PR](https://github.com/401-advanced-javascript-ashley-biermann/auth-server/pull/1)
 - [ci/cd](https://github.com/401-advanced-javascript-ashley-biermann/notes/tree/master/.github/workflows) (GitHub Actions)
 - [back-end server url - net yet implemented]()
 - [front-end application]()
@@ -27,9 +27,8 @@
 #### How to use your library (where applicable)
 
 #### Tests
+- Testing not yet implemented
 - Run with `npm test `
-- Any tests of note?
-- Describe any tests that you did not complete, skipped, etc
 
 #### UML
 
