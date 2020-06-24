@@ -19,6 +19,7 @@
 
 - `PORT`
 - `MONGO_ATLAS_URI`
+- `SECRET`
 
 #### How to initialize/run your application (where applicable)
 
@@ -33,3 +34,6 @@
 #### UML
 
 ![UML class 11](images/uml-auth-server.jpg)
+
+#### Citations
+- Class11 - Worked through class11 code during code review - used that to inform `generateToken()`, second part of `handleCreateUser()`, `authenticateUser()`, basic.js middleware
