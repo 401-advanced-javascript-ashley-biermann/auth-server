@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+</head>
+<body>
+  <a id="oauth" href="#">Login</a>
+  <script>
+
+    let URL = // comes from the place where I'm using for the oauth server
+
+    let options = {
+      // from the oauth server //FIXME: Get these from registering with whatever oauth I decide to use
+      client_id: '',
+      redirect_uri: '',
+      // look this up based on oauth server specs
+      scope: ,
+      state: '401appconsent'
+    }
+
+    let QueryString = Object.keys(options).map(key => {
+      return `${key}=${encodeURIComponent(options[key])}`;
+    }).join('&'); //client_id='089a3bbb613f45128b91'
+
+  let authUrl = `${URL}?${QueryString}`;
+
+  let link = document.getElementById('oauth');
+
+  link.setAttribute('href', authUrl)
+
+  </script>
+</body>
+</html>

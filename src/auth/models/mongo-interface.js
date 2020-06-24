@@ -10,6 +10,9 @@ class MongoInterface {
     return newEntry.save();
   }
   
+  exists(data) {
+    return this.schema.exists(data);
+  }
   // get(_id) {
   //   let searchParam = _id ? { _id } : {};
   //   return this.schema.find(searchParam);
