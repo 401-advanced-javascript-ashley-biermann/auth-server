@@ -1,7 +1,7 @@
 'use strict';
 
 /**
- * Server
+ * Express Server
  * @module express server
  */
 

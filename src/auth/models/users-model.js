@@ -6,22 +6,22 @@
  */
 
 require('dotenv').config();
+const schema = require('../models/users-schema');
+const Model = require('../models/mongo-interface');
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 // const cors = require('cors');
 // const base64 = require('base-64');
-const jwt = require('jsonwebtoken');
-// const schema = require('../models/users-schema');
-const Model = require('../models/mongo-interface')
 
 let SECRET = process.env.SECRET;
 
 class User extends Model {
-  constructor(schema) {
+  constructor() {
     super(schema);
   }
 
-  static hashPassword(value) { 
-    return bcrypt.hash(value, 5);
+  static hashPassword(password) { 
+    return bcrypt.hash(password, 5);
   }
 
   static async authenticateUser(username, password) {
@@ -49,6 +49,25 @@ class User extends Model {
     let token = jwt.sign(username, SECRET);
     return token;
   }
+
+  //TODO: class13 lab
+  // Create a new method that will accept a token
+// Use the JWT library to validate it with the secret
+// If it’s valid look up the user by the id in the token and return it
+// Otherwise, return an error
+// from class 
+  static async validateToken(token) {
+    try {
+
+      let user = await jwt.verify(token, SECRET);
+      return user;
+
+    } catch (e) {
+
+      return false;
+    }
+  }
+
 }
 
 module.exports = User;
