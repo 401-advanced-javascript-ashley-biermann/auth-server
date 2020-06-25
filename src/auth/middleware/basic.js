@@ -17,4 +17,5 @@ module.exports = async function authMiddleware(req, res, next) {
   } else {
     next('Invalid login');
   }
+  return 0;
 }

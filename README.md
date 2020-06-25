@@ -6,7 +6,7 @@
 
 ### Links and Resources
 
-- [submission PR](https://github.com/401-advanced-javascript-ashley-biermann/auth-server/pull/1)
+- [submission PR](https://github.com/401-advanced-javascript-ashley-biermann/auth-server/pull/3)
 - [ci/cd](https://github.com/401-advanced-javascript-ashley-biermann/notes/tree/master/.github/workflows) (GitHub Actions)
 - [back-end server url - net yet implemented]()
 - [front-end application]()
@@ -37,3 +37,4 @@
 
 #### Citations
 - Class11 - Worked through class11 code during code review - used that to inform `generateToken()`, second part of `handleCreateUser()`, `authenticateUser()`, basic.js middleware
+- Class13 - Watched this video [Youtube](https://www.youtube.com/watch?v=7nafaH9SddU), which helped me gain understanding of how to add an expiration time on tokens AND understand more about using the docs
