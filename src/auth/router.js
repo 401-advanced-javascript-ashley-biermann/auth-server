@@ -9,15 +9,18 @@
 const express = require('express');
 const router = express.Router();
 
-// FILES
-const auth = require('./middleware/basic');
+// MIDDLEWARE
+const basicAuth = require('./middleware/basic');
+const bearerAuth = require('./middleware/bearer');
+
+// MODELS
 const UserModel = require('./models/users-model');
 const User = new UserModel();
 
 // ROUTES
 router.post('/signup', handleCreateUser);
-router.post('/signin', auth, handleSignIn);
-router.get('/users', handleGetUsers);
+router.post('/signin', basicAuth, handleSignIn);
+router.get('/users', bearerAuth, handleGetUsers);
 
 //FUNCTIONS
 async function handleCreateUser (req, res, next) {

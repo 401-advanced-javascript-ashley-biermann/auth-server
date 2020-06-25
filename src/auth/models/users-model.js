@@ -45,29 +45,19 @@ class User extends Model {
   }
 
   static generateToken(username) {
-    // is username a string or an object? don't nest a an object in another object here
-    let token = jwt.sign(username, SECRET);
+    // is username a string or an object? don't nest a an object in another object here, but username IS an obj, which is what the docs say we want
+    let token = jwt.sign(username, SECRET, { expiresIn: '10m'});
     return token;
   }
 
-  //TODO: class13 lab
-  // Create a new method that will accept a token
-// Use the JWT library to validate it with the secret
-// If it’s valid look up the user by the id in the token and return it
-// Otherwise, return an error
-// from class 
   static async validateToken(token) {
     try {
-
       let user = await jwt.verify(token, SECRET);
       return user;
-
     } catch (e) {
-
       return false;
     }
   }
-
 }
 
 module.exports = User;
