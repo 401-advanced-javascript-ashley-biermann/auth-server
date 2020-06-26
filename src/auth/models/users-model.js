@@ -10,15 +10,20 @@ const schema = require('../models/users-schema');
 const Model = require('../models/mongo-interface');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-// const cors = require('cors');
-// const base64 = require('base-64');
 
-let SECRET = process.env.SECRET;
+const allRoles = require('../models/roles');
+const { set } = require('mongoose');
+
+const SECRET = process.env.SECRET;
 
 class User extends Model {
   constructor() {
     super(schema);
   }
+
+  setUsername(username) { this.username = username; }
+  setPassword(password) { this.password = password; }
+  setRole(role) { this.role = role; }
 
   static hashPassword(password) { 
     return bcrypt.hash(password, 5);
@@ -26,10 +31,8 @@ class User extends Model {
 
   static async authenticateUser(username, password) {
     try {
-
       //search for the user that the req is looking for
       let users = await schema.find({ username });
-
       //see if the user's password matches the password passed into signin route
       let authorized = await bcrypt.compare(password, users[0].password);
 
@@ -45,8 +48,8 @@ class User extends Model {
   }
 
   static generateToken(username) {
-    // is username a string or an object? don't nest a an object in another object here, but username IS an obj, which is what the docs say we want
-    let token = jwt.sign(username, SECRET, { expiresIn: '10m'});
+    // console.log(username);
+    let token = jwt.sign(username, SECRET, { expiresIn: '10h'});
     return token;
   }
 
@@ -55,9 +58,14 @@ class User extends Model {
       let user = await jwt.verify(token, SECRET);
       return user;
     } catch (e) {
-      return false;
+      return Promise.reject('jwt invalid');
     }
   }
+
+  can(permission) {
+    //check if the user can do the thing they want to do. If their role matches the capability they want, go for it!
+    return allRoles[this.role].includes(permission);
+  }  
 }
 
 module.exports = User;

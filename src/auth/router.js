@@ -9,9 +9,10 @@
 const express = require('express');
 const router = express.Router();
 
-// MIDDLEWARE
+// ROUTE MIDDLEWARE
 const basicAuth = require('./middleware/basic');
 const bearerAuth = require('./middleware/bearer');
+const acl = require('./middleware/acl');
 
 // MODELS
 const UserModel = require('./models/users-model');
@@ -20,7 +21,7 @@ const User = new UserModel();
 // ROUTES
 router.post('/signup', handleCreateUser);
 router.post('/signin', basicAuth, handleSignIn);
-router.get('/users', bearerAuth, handleGetUsers);
+router.get('/users', bearerAuth, /* acl('update'),*/ handleGetUsers);
 
 //FUNCTIONS
 async function handleCreateUser (req, res, next) {
@@ -32,11 +33,11 @@ async function handleCreateUser (req, res, next) {
   }
 
   let password = await UserModel.hashPassword(req.body.password);
-  console.log(password);
-  let newUser = await User.create({ username: req.body.username, password: password });
+
+  let newUser = await User.create({ username: req.body.username, password: password, role: req.body.role });
   if (newUser) {
     let token = UserModel.generateToken({ username: req.body.username });
-    console.log(token);
+
     res.cookie('token', token);
     res.header('token', token);
     res.send({token, user: req.user});

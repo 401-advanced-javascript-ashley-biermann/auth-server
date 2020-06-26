@@ -34,6 +34,16 @@ class MongoInterface {
       .catch(err => console.log(err));
   }
 
+  getByUsername(username) {
+    let searchParam = username ? { username } : {};
+    return this.schema.find(searchParam)
+      .then(result => {
+        let formatted = result[0];
+        return formatted;
+      })
+      .catch(err => console.log(err));
+  }
+
   update(_id, data) {
     let updatedEntry = this.schema.findByIdAndUpdate(_id, data);
     return updatedEntry;

@@ -1,4 +1,4 @@
-# LAB Authentication - Class 11
+# LAB Authentication - Class 14
 
 ## Project: Authentication
 
@@ -6,7 +6,7 @@
 
 ### Links and Resources
 
-- [submission PR](https://github.com/401-advanced-javascript-ashley-biermann/auth-server/pull/3)
+- [submission PR](https://github.com/401-advanced-javascript-ashley-biermann/auth-server/pull/4)
 - [ci/cd](https://github.com/401-advanced-javascript-ashley-biermann/notes/tree/master/.github/workflows) (GitHub Actions)
 - [back-end server url - net yet implemented]()
 - [front-end application]()
